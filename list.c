@@ -22,7 +22,7 @@ void printList(struct songNode *songList){
     }
 }
 
-struct songNode * insertFront(struct songNode *songList,
+struct songNode *insertFront(struct songNode *songList,
                               char paramArtist[100],
                               char paramName[100]){
     struct songNode *new_head = malloc(sizeof(struct songNode));
@@ -32,14 +32,31 @@ struct songNode * insertFront(struct songNode *songList,
     return new_head;
 }
 
-struct songNode* insertOrder(struct songNode* songList,
+struct songNode *insertOrder(struct songNode* songList,
                              char paramArtist[100],
                              char paramName[100]){
     struct songNode *cursor = songList;
     struct songNode *previousNode = NULL;
     for(cursor; cursor != NULL; cursor = cursor->next){
-        if(strcmp(cursor->artist, paramName)){
-          // stuff
+        if(strcmp(cursor->artist, paramName) > 0){
+            //code
         }
+    }
+}
+
+struct songNode *insertHere(struct songList *songList,
+                            struct songNode *before, 
+                            struct songNode *after, 
+                            char paramArtist[100],
+                            char paramName[100]){
+    struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
+    strcpy(toInsert->artist, paramArtist);
+    strcpy(toInsert->name, paramName);
+    if(before == NULL){
+        insertFront(songList, paramArtist, paramName);
+    } else {
+        toInsert->next = after;
+        before->next = toInsert;
+        struct songNode *toreturn;
     }
 }

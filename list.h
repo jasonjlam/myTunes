@@ -5,8 +5,8 @@ struct songNode{
 };
 
 struct songNode* insertFront(struct songNode* songList,
-                              char paramArtist[100],
-                              char paramName[100]);
+                             char paramArtist[100],
+                             char paramName[100]);
 
 struct songNode* insertOrder(struct songNode* songList, struct songNode* songToInsert);
 
