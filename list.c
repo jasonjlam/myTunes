@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-
-struct songNode{
-  char name[100];
-  char artist[100];
-  struct songNode *next;
-};
+#include "list.h"
 
 void printList(struct songNode *songList){
     printf("[\n");
@@ -23,8 +18,8 @@ void printList(struct songNode *songList){
 }
 
 struct songNode *insertFront(struct songNode *songList,
-                              char paramArtist[100],
-                              char paramName[100]){
+                             char paramArtist[100],
+                             char paramName[100]){
     struct songNode *new_head = malloc(sizeof(struct songNode));
     strcpy(new_head->name, paramName);
     strcpy(new_head->artist, paramArtist);
@@ -38,25 +33,26 @@ struct songNode *insertOrder(struct songNode* songList,
     struct songNode *cursor = songList;
     struct songNode *previousNode = NULL;
     for(cursor; cursor != NULL; cursor = cursor->next){
-        if(strcmp(cursor->artist, paramName) > 0){
-            //code
+        if(strcmp(cursor->artist, paramName) < 0){
+        } else {
+          return insertHere(songList, cursor, cursor->next, paramArtist, paramName);
         }
     }
 }
 
-struct songNode *insertHere(struct songList *songList,
-                            struct songNode *before, 
-                            struct songNode *after, 
+struct songNode *insertHere(struct songNode *songList,
+                            struct songNode *before,
+                            struct songNode *after,
                             char paramArtist[100],
                             char paramName[100]){
-    struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
-    strcpy(toInsert->artist, paramArtist);
-    strcpy(toInsert->name, paramName);
     if(before == NULL){
-        insertFront(songList, paramArtist, paramName);
+        return insertFront(songList, paramArtist, paramName);
     } else {
+        struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
+        strcpy(toInsert->artist, paramArtist);
+        strcpy(toInsert->name, paramName);
         toInsert->next = after;
         before->next = toInsert;
-        struct songNode *toreturn;
+        return songList;
     }
 }
