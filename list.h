@@ -4,11 +4,13 @@ struct songNode{
   struct songNode *next;
 };
 
-struct songNode* insert_front(struct songNode* songList, struct songNode* songToInsert);
+struct songNode* insertFront(struct songNode* songList,
+                              char paramArtist[100],
+                              char paramName[100]);
 
-struct songNode* insert_order(struct songNode* songList, struct songNode* songToInsert);
+struct songNode* insertOrder(struct songNode* songList, struct songNode* songToInsert);
 
-void print_list(struct songNode* songList);
+void printList(struct songNode* songList);
 
 struct songNode* findSong (struct songNode* songList, struct songNode* songToFind);
 
