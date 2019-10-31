@@ -31,28 +31,75 @@ struct songNode *insertOrder(struct songNode* songList,
                              char paramArtist[100],
                              char paramName[100]){
     struct songNode *cursor = songList;
-    struct songNode *previousNode = NULL;
-    for(cursor; cursor != NULL; cursor = cursor->next){
-        if(strcmp(cursor->artist, paramName) < 0){
-        } else {
-          return insertHere(songList, cursor, cursor->next, paramArtist, paramName);
-        }
+    if(strcmp(cursor->artist, paramArtist) > 0){
+        return insertFront(songList, paramArtist, paramName);
     }
+    if(songList == NULL){
+        return insertFront(songList, paramArtist, paramName);
+    }
+
+    for(cursor; cursor->next->next != NULL; cursor = cursor->next){
+        if(strcmp(cursor->next->artist, paramArtist) > 0){
+            return insertHere(songList, cursor, paramArtist, paramName);            
+        } else if(strcmp(cursor->next->artist, paramArtist) == 0){
+            return insertIntoArtist(songList, paramArtist, paramName);
+        } else {} 
+    }
+    if(strcmp(cursor->next->artist, paramArtist) > 0){
+        return insertHere(songList, cursor, paramArtist, paramName);
+    } else {
+        return insertHere(songList, cursor->next, paramArtist, paramName);
+        
+    }
+
 }
 
 struct songNode *insertHere(struct songNode *songList,
                             struct songNode *before,
-                            struct songNode *after,
                             char paramArtist[100],
                             char paramName[100]){
-    if(before == NULL){
-        return insertFront(songList, paramArtist, paramName);
-    } else {
-        struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
-        strcpy(toInsert->artist, paramArtist);
-        strcpy(toInsert->name, paramName);
-        toInsert->next = after;
+    struct songNode *after = before->next;
+    struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
+    strcpy(toInsert->artist, paramArtist);
+    strcpy(toInsert->name, paramName);
+    if(after == NULL){
+        toInsert->next = NULL;
         before->next = toInsert;
-        return songList;
     }
+    toInsert->next = after;
+    before->next = toInsert;
+    return songList;
+}
+
+struct songNode *insertIntoArtist(struct songNode *songList,
+                                  char paramArtist[100],
+                                  char paramName[100]){
+    struct songNode *nameCursor = findFirstArtist(songList, paramArtist);
+    if(strcmp(nameCursor->name, paramName) > 0){
+        return insertHere(songList, nameCursor, paramArtist, paramName);
+    }
+    for(nameCursor; strcmp(nameCursor->next->next->name, paramName) == 0; 
+                            nameCursor = nameCursor->next){
+        if(strcmp(nameCursor->next->name, paramName) > 0){
+            return insertHere(songList, nameCursor, paramArtist, paramName);            
+        } else if(strcmp(nameCursor->next->name, paramName) == 0){
+            return insertHere(songList, nameCursor, paramArtist, paramName);
+        } else {}
+    } 
+    if(strcmp(nameCursor->next->name, paramName) > 0){
+        return insertHere(songList, nameCursor, paramArtist, paramName);
+    } else {
+        return insertHere(songList, nameCursor->next, paramArtist, paramName);
+    }
+
+}
+
+struct songNode *findFirstArtist(struct songNode *songList, char paramArtist[100]){
+    struct songNode *cursor = songList;
+    for(cursor; cursor != NULL; cursor = cursor->next){
+        if(strcmp(cursor->artist, paramArtist) == 0){
+            return cursor;
+        }
+    }
+    return NULL; 
 }
