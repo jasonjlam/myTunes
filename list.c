@@ -30,20 +30,22 @@ struct songNode *insertFront(struct songNode *songList,
 struct songNode *insertOrder(struct songNode* songList,
                              char paramArtist[100],
                              char paramName[100]){
-    char currentSong[200];
-    char paramSong[200];
+    char currentSong[250] = "";
+    char paramSong[250]="";
     strcat(paramSong, paramArtist);
     strcat(paramSong, " ");
     strcat(paramSong, paramName);
     struct songNode *cursor = songList;
     struct songNode *previous = NULL;
-    for(cursor; cursor != NULL; previous = cursor, cursor = cursor->next){
+    for(; cursor != NULL; previous = cursor, cursor = cursor->next){
+      strcpy(currentSong, "");
       strcat(currentSong, cursor->artist);
       strcat(currentSong, " ");
       strcat(currentSong, cursor->name);
       // printf("\n%s\n", currentSong);
-
-      if(strcmp(currentSong, paramSong) > 0){
+      printf("compared: %d \n", strcmp(currentSong, paramSong));
+      if(strcmp(currentSong, paramSong) >= 0){
+        printf ("inserted at %s \n", previous->name );
         return insertHere(songList, previous, paramArtist, paramName);
       }
     }
@@ -75,10 +77,14 @@ struct songNode *insertHere(struct songNode *songList,
                             struct songNode *before,
                             char paramArtist[100],
                             char paramName[100]){
-    struct songNode *after = before->next;
     struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
     strcpy(toInsert->artist, paramArtist);
     strcpy(toInsert->name, paramName);
+    if(before == NULL) {
+      toInsert->next = songList;
+      return toInsert;
+    }
+    struct songNode *after = before->next;
     if(after == NULL){
         toInsert->next = NULL;
         before->next = toInsert;

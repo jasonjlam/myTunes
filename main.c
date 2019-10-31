@@ -11,6 +11,7 @@ int main(){
   testList = insertFront(testList, "Aerosmith", "Sweet Emotion");
   testList = insertOrder(testList, "Boston", "More Than A Feeling");
   testList = insertOrder(testList, "Abba", "Dancing Queen");
+  testList = insertOrder(testList, "Imagine Dragons", "Warriors");
   testList = insertOrder(testList, "ZZ Top", "Sharp Dressed Man");
   testList = insertOrder(testList, "21 Pilots", "Stressed Out");
   testList = insertOrder(testList, "Styx", "Come Sail Away");
