@@ -8,20 +8,20 @@ int main(){
     srand (time(NULL));
     struct songNode * testList = NULL;
     printList(testList);
-    testList = insertFront(testList, "Pink Floyd", "Money");
-    testList = insertFront(testList, "Aerosmith", "Sweet Emotion");
-    testList = insertOrder(testList, "Boston", "More Than A Feeling");
-    testList = insertOrder(testList, "Abba", "Dancing Queen");
-    testList = insertOrder(testList, "Imagine Dragons", "Warriors");
-    testList = insertOrder(testList, "ZZ Top", "Sharp Dressed Man");
-    testList = insertOrder(testList, "21 Pilots", "Stressed Out");
-    testList = insertOrder(testList, "Styx", "Come Sail Away");
-    testList = insertOrder(testList, "Styx", "Renegade");
-    testList = insertOrder(testList, "Led Zeppelin", "Sharp Dressed Man");
-    testList = insertOrder(testList, "Eric Clapton", "Down and Out");
-    testList = insertOrder(testList, "Eric Clapton", "Layla");
-    testList = insertOrder(testList, "Eric Clapton", "Tears In Heaven");
-    testList = insertOrder(testList, "Eric Clapton", "My Fathers Eyes");
+    testList = insertFront(testList, "pink floyd", "money");
+    testlist = insertFront(testList, "aerosmith", "sweet emotion");
+    testList = insertOrder(testList, "boston", "more than a feeling");
+    testList = insertOrder(testList, "abba", "dancing queen");
+    testlist = insertOrder(testList, "imagine dragons", "warriors");
+    testList = insertOrder(testList, "zz top", "sharp dressed man");
+    testList = insertOrder(testList, "21 pilots", "stressed out");
+    testList = insertOrder(testList, "styx", "come sail away");
+    testlist = insertOrder(testList, "styx", "renegade");
+    testlist = insertOrder(testList, "led zeppelin", "sharp dressed man");
+    testList = insertOrder(testList, "eric clapton", "down and out");
+    testList = insertOrder(testList, "eric clapton", "layla");
+    testlist = insertOrder(testList, "eric clapton", "tears in heaven");
+    testList = insertOrder(testList, "eric clapton", "my fathers eyes");
 
     printf("\n");
     printList(testList);
@@ -59,5 +59,9 @@ int main(){
     printf("\nTesting freeList(testList)\n");
     printf("Should clear the list and return a null pointer\n");
     printList(freeList(testList));
+
+    char character = 'a';
+    int i = (int)(character)-96;
+    printf("\n%d\n", i);
     return 0;
 }

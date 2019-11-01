@@ -96,9 +96,7 @@ struct songNode *findSong(struct songNode *songList, char paramArtist[100], char
 
 struct songNode* randomSong (struct songNode* songList) {
     struct songNode *cursor = songList;
-    int i = 0;
-    for (i; cursor !=NULL; cursor = cursor->next, i++) {
-    }
+    int i = listLength(songList);
     int random = rand() % i;
     // printf("%d \n", random);
     int d = 0;
@@ -140,4 +138,12 @@ struct songNode * freeList(struct songNode * songList){
         free(nextSong);
     }
     return NULL;
+}
+
+int listLength(struct songNode *songList){
+    struct songNode *cursor = songList;
+    int i = 0;
+    for (i; cursor !=NULL; cursor = cursor->next, i++) {
+    }
+    return i;
 }

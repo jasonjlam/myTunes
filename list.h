@@ -33,3 +33,5 @@ struct songNode *insertHere(struct songNode *songList,
                             struct songNode *before,
                             char paramArtist[100],
                             char paramName[100]);
+
+int listLength(struct songNode *songList);
