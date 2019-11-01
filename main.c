@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 #include "list.h"
+#include "library.h"
 #include <string.h>
 
 int main(){
     srand (time(NULL));
+/*
     struct songNode * testList = NULL;
     printList(testList);
     testList = insertFront(testList, "pink floyd", "money");
@@ -28,15 +30,15 @@ int main(){
 
     printf("\nTesting findFirstArtist (testList, \"Eric Clapton\")\n");
     printf("Should return a pointer to the first Eric Clapton song, Down and Out \n");
-    printList(findFirstArtist(testList, "Eric Clapton"));
+    printList(findFirstArtist(testList, "eric clapton"));
 
     printf("\nTesting findSong (testList, \"Styx\", \"Renegade\") \n");
     printf("Should return a pointer to Styx, Renegade \n");
-    printList(findSong(testList, "Styx", "Renegade"));
+    printList(findSong(testList, "styx", "renegade"));
 
     printf("\nTesting findSong(testList, \"Jay-Z\", \"Renegade\") \n");
     printf("Should return a null pointer if the song is not in the list \n");
-    printList(findSong(testList, "Jay-Z", "Renegade"));
+    printList(findSong(testList, "jay-Z", "renegade"));
 
     printf("\nTesting randomSong(testList) * 3 \n");
     printf("Should return pointers to three random songs \n");
@@ -46,7 +48,7 @@ int main(){
 
     printf("\nTesting removeSong(testList, \"Abba\", \"Dancing Queen\")\n");
     printf("Should return the list without Abba, Dancing Queen\n");
-    printList(removeSong(testList, "Abba", "Dancing Queen"));
+    printList(removeSong(testList, "abba", "dancing Queen"));
 
     printf("\nTesting removeSong(testList, \"Imagine Dragons\", \"Warriors\")\n");
     printf("Should return the list without Imagine Dragons, Warriors\n");
@@ -59,9 +61,9 @@ int main(){
     printf("\nTesting freeList(testList)\n");
     printf("Should clear the list and return a null pointer\n");
     printList(freeList(testList));
-
-    char character = 'a';
-    int i = (int)(character)-96;
-    printf("\n%d\n", i);
+*/
+	struct songNode *library[27]; 
+	library = createLibrary();
+	printList(library);
     return 0;
 }
