@@ -93,3 +93,51 @@ struct songNode *findSong(struct songNode *songList, char paramArtist[100], char
     }
     return NULL;
 }
+
+struct songNode* randomSong (struct songNode* songList) {
+    struct songNode *cursor = songList;
+    int i = 0;
+    for (i; cursor !=NULL; cursor = cursor->next, i++) {
+    }
+    int random = rand() % i;
+    // printf("%d \n", random);
+    int d = 0;
+    cursor = songList;
+    for (d; d != random; cursor = cursor->next, d++) {
+        // printf("%d \n", d);
+        }
+    return cursor;
+}
+
+struct songNode * removeSong(struct songNode *songList, char paramArtist[100], char paramSong[100]){
+    if((strcmp(songList->artist, paramArtist)== 0) &&  (strcmp(songList->name, paramSong) == 0)){
+        // printf("ruh roh \n");
+        struct songNode *nextSong = songList->next;
+        free(songList);
+        return nextSong;
+    }
+    else {
+        struct songNode *cursor = songList;
+        for(cursor; cursor->next != NULL; cursor = cursor->next){
+            // printf("%d, %d \n", strcmp(cursor->next->artist, paramArtist), strcmp(cursor->next->name, paramSong));
+            if((strcmp(cursor->next->artist, paramArtist) == 0) && (strcmp(cursor->next->name, paramSong) == 0)){
+                struct songNode *nextSong = cursor->next->next;
+                free(cursor->next);
+                cursor->next = nextSong;
+                return songList;
+            }
+        }
+        return songList;
+    }
+}
+
+struct songNode * freeList(struct songNode * songList){
+    struct songNode *nextSong = songList;
+    struct songNode *cursor;
+    for(nextSong; nextSong != NULL; nextSong = cursor){
+        cursor = nextSong->next;
+        // printf("...> Freeing song %s: %s\n", nextSong->artist, nextSong->name);
+        free(nextSong);
+    }
+    return NULL;
+}

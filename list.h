@@ -23,7 +23,9 @@ struct songNode* findFirstArtist (struct songNode* songList,
 
 struct songNode* randomSong (struct songNode* songList);
 
-struct songNode* removeSong (struct songNode* songList, struct songNode* songToRemove);
+struct songNode* removeSong (struct songNode* songList,
+                             char paramArtist[100],
+                             char paramName[100]);
 
 struct songNode* freeList (struct songNode* songList);
 
