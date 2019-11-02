@@ -38,35 +38,34 @@ struct songNode *insertOrder(struct songNode* songList,
     struct songNode *cursor = songList;
     struct songNode *previous = NULL;
     for(; cursor != NULL; previous = cursor, cursor = cursor->next){
-      strcpy(currentSong, "");
-      strcat(currentSong, cursor->artist);
-      strcat(currentSong, " ");
-      strcat(currentSong, cursor->name);
-      // printf("\n%s\n", currentSong);
-      // printf("compared: %d \n", strcmp(currentSong, paramSong));
-      if(strcmp(currentSong, paramSong) >= 0){
+        strcpy(currentSong, "");
+        strcat(currentSong, cursor->artist);
+        strcat(currentSong, " ");
+        strcat(currentSong, cursor->name);
+        // printf("\n%s\n", currentSong);
+        // printf("compared: %d \n", strcmp(currentSong, paramSong));
+        printf("comparison: %d\n", strcmp(currentSong, paramSong) );
+        if(strcmp(currentSong, paramSong) >= 0){
         // printf ("inserted at %s \n", previous->name );
-        return insertHere(songList, previous, paramArtist, paramName);
+            return insertHere(songList, previous, cursor, paramArtist, paramName);
       }
     }
-    return insertHere(songList, previous, paramArtist, paramName);
+    return insertHere(songList, previous, cursor, paramArtist, paramName);
 }
 
-struct songNode *insertHere(struct songNode *songList,
+struct songNode *insertHere(struct songNode * songList,
                             struct songNode *before,
+                            struct songNode *after,
                             char paramArtist[100],
                             char paramName[100]){
     struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
+    printf("%s: %s \n", paramArtist, paramName);
     strcpy(toInsert->artist, paramArtist);
     strcpy(toInsert->name, paramName);
     if(before == NULL) {
-      toInsert->next = songList;
+        printf("NULL! \n");
+      toInsert->next = after;
       return toInsert;
-    }
-    struct songNode *after = before->next;
-    if(after == NULL){
-        toInsert->next = NULL;
-        before->next = toInsert;
     }
     toInsert->next = after;
     before->next = toInsert;

@@ -29,8 +29,9 @@ struct songNode* removeSong (struct songNode* songList,
 
 struct songNode* freeList (struct songNode* songList);
 
-struct songNode *insertHere(struct songNode *songList,
+struct songNode *insertHere(struct songNode * songList,
                             struct songNode *before,
+                            struct songNode *after,
                             char paramArtist[100],
                             char paramName[100]);
 
