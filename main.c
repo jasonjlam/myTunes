@@ -81,5 +81,7 @@ int main(){
     library = addSong(library, "dr. dre", "the next episode");
     library = addSong(library, "bon jovi", "livin' on a prayer");
     printLibrary(library);
+
+    printList(findSongLibrary(library, "nas", "ether"));
     return 0;
 }

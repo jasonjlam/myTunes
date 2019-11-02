@@ -44,7 +44,7 @@ struct songNode *insertOrder(struct songNode* songList,
         strcat(currentSong, cursor->name);
         // printf("\n%s\n", currentSong);
         // printf("compared: %d \n", strcmp(currentSong, paramSong));
-        printf("comparison: %d\n", strcmp(currentSong, paramSong) );
+        // printf("comparison: %d\n", strcmp(currentSong, paramSong) );
         if(strcmp(currentSong, paramSong) >= 0){
         // printf ("inserted at %s \n", previous->name );
             return insertHere(songList, previous, cursor, paramArtist, paramName);
@@ -59,11 +59,11 @@ struct songNode *insertHere(struct songNode * songList,
                             char paramArtist[100],
                             char paramName[100]){
     struct songNode *toInsert = calloc(sizeof(struct songNode), 1);
-    printf("%s: %s \n", paramArtist, paramName);
+    // printf("%s: %s \n", paramArtist, paramName);
     strcpy(toInsert->artist, paramArtist);
     strcpy(toInsert->name, paramName);
     if(before == NULL) {
-        printf("NULL! \n");
+        // printf("NULL! \n");
       toInsert->next = after;
       return toInsert;
     }

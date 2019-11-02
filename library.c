@@ -8,19 +8,19 @@
 struct songNode **addSong(struct songNode *library[27],
                          char paramArtist[100],
                          char paramName[100]){
-    printf("%s\n", paramArtist);
+    // printf("%s\n", paramArtist);
 	int position = (int)(paramArtist[0] - 96);
     if (position < 1 || position > 26 ){
         position = 0;
     }
 	if(library[position] == NULL){
-        printf("%s\n", paramName);
+        // printf("%s\n", paramName);
 		library[position] = insertOrder(library[position], paramArtist, paramName);
 		return library;
 	}
 
 	library[position] = insertOrder(library[position], paramArtist, paramName);
-    printList(library[position]);
+    // printList(library[position]);
 	return library;
 }
 
@@ -44,4 +44,25 @@ void printLibrary(struct songNode **library) {
         }
     }
     printf("END OF LIBRARY\n");
+}
+
+struct songNode *findSongLibrary(struct songNode **library,
+                                  char paramArtist[100],
+			                      char paramName[100]){
+    int position = (int)(paramArtist[0] - 96);
+    if (position < 1 || position > 26){
+        position = 0;
+    }
+    if(library[position] == NULL){
+        printf("\nSong does not exist\n");
+        return NULL;
+    } 
+    struct songNode *cursor = library[position];
+    for(; cursor == NULL; cursor = cursor->next){
+        if(strcmp(cursor->artist, paramArtist) == 0){
+            return cursor;
+        }
+    }
+    printf("\nSong does not exist\n");
+    return NULL;
 }

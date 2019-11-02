@@ -4,7 +4,7 @@ struct songNode **addSong(struct songNode *library[27],
                          char paramArtist[100],
                          char paramName[100]);
 
-struct songNode **findSongLibrary(struct songNode **library,
+struct songNode *findSongLibrary(struct songNode **library,
                            char paramArtist[100],
                            char paramName[100]);
 
