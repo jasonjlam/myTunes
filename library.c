@@ -28,7 +28,7 @@ struct songNode **createLibrary(){
 	struct songNode **library = (struct songNode**)calloc(sizeof(struct songNode),27);
     // = calloc(sizeof (struct songNode), 27);
 	int i = 0;
-	for(i ;i < 27; i++){
+	for(;i < 27; i++){
 		library[i] = (struct songNode *)malloc(sizeof(struct songNode));
         library[i] = NULL;
 	}
@@ -38,7 +38,7 @@ struct songNode **createLibrary(){
 void printLibrary(struct songNode **library) {
     int i = 0;
     printf("Printing out entire library, by each letter\nSTART OF LIBRARY\n");
-    for (i; i <27; i++){
+    for ( ;i <27; i++){
         // if (library[i] != NULL) {
             printList(library[i]);
         // }
@@ -120,8 +120,9 @@ void printByArtist(struct songNode **library, char paramArtist[100]) {
     struct songNode *cursor = library[position];
     if(library[position] == NULL){
         printf("]\n");
+        return;
     }
-    for(; (strcmp(cursor->artist, paramArtist) == 0) && (cursor != NULL); cursor = cursor->next){
+    for (; (cursor != NULL) && (strcmp(cursor->artist, paramArtist) == 0); cursor = cursor->next){
         printf("\t%s: %s\n", cursor->artist, cursor->name);
     }
     printf("]\n");
