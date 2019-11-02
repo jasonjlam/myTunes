@@ -70,6 +70,7 @@ int main(){
     library = addSong(library, "50 cent", "wanksta");
     library = addSong(library, "against the current", "legends never die");
     library = addSong(library, "ac/dc", "thunderstruck");
+    library = addSong(library, "ac/dc", "highway to hell");
     library = addSong(library, "trick trick", "who want it");
     library = addSong(library, "nate dogg", "backdoor");
     library = addSong(library, "nas", "ether");
@@ -77,11 +78,43 @@ int main(){
     library = addSong(library, "bastille", "pompeii");
     library = addSong(library, "tove lo", "stay high");
     library = addSong(library, "eminem", "lose yourself");
+    library = addSong(library, "eminem", "dead and gone");
     library = addSong(library, "onerepublic", "wherever i go");
     library = addSong(library, "dr. dre", "the next episode");
     library = addSong(library, "bon jovi", "livin' on a prayer");
     printLibrary(library);
 
+    printf("\n---------- FIND SONG FROM LIBRARY ----------");
+    printf("\nFinding \"nas: ether\"\n");
     printList(findSongLibrary(library, "nas", "ether"));
+
+    printf("\nFinding \"50 cent: wanksta\"\n");
+    printList(findSongLibrary(library, "50 cent", "wanksta"));
+
+    printf("\nFinding \"renegade: ether\"\n");
+    printList(findSongLibrary(library, "renegade", "ether"));
+
+    printf("\nFinding \"nas: livin' on a prayer\"\n");
+    printList(findSongLibrary(library, "nas", "livin' on a prayer"));
+
+    printf("\n---------- FIND ARTIST FROM LIBRARY ----------");
+    printf("\nFinding \"ac/dc\"\n");
+    printList(findArtistLibrary(library, "ac/dc"));
+
+    printf("\nFinding \"eminem\"\n");
+    printList(findArtistLibrary(library, "eminem"));
+
+    printf("\nFinding \"nate dogg\"\n");
+    printList(findArtistLibrary(library, "nate dogg"));
+
+    printf("\n---------- PRINT BY LETTER ----------");
+    printByLetter(library, 'a');
+    printByLetter(library, 'n');
+    printByLetter(library, 'z');
+
+    printf("\n---------- PRINT BY ARTIST ----------\n");
+    printByArtist(library, "ac/dc");
+    printByArtist(library, "nas");
+    printByArtist(library, "zed");
     return 0;
 }

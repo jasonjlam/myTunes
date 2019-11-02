@@ -8,12 +8,12 @@ struct songNode *findSongLibrary(struct songNode **library,
                            char paramArtist[100],
                            char paramName[100]);
 
-struct songNode **findArtistLibrary(struct songNode** library,
+struct songNode *findArtistLibrary(struct songNode** library,
                            char paramArtist[100]);
 
-void printLetter(struct songNode **library, char letter);
+void printByLetter(struct songNode **library, char letter);
 
-void printArtist(struct songNode **library, char paramArtist[100]);
+void printByArtist(struct songNode **library, char paramArtist[100]);
 
 void printLibrary(struct songNode **library);
 
