@@ -29,7 +29,7 @@ struct songNode **createLibrary(){
     // = calloc(sizeof (struct songNode), 27);
 	int i = 0;
 	for(;i < 27; i++){
-		library[i] = (struct songNode *)malloc(sizeof(struct songNode));
+		// library[i] = (struct songNode *)malloc(sizeof(struct songNode));
         library[i] = NULL;
 	}
 	return library;
@@ -38,10 +38,14 @@ struct songNode **createLibrary(){
 void printLibrary(struct songNode **library) {
     int i = 0;
     printf("Printing out entire library, by each letter\nSTART OF LIBRARY\n");
+    if (library == NULL){
+        printf("LIBRARY IS EMPTY\n");
+        return;
+    }
     for ( ;i <27; i++){
-        // if (library[i] != NULL) {
+        if (library[i] != NULL) {
             printList(library[i]);
-        // }
+        }
     }
     printf("END OF LIBRARY\n");
 }
@@ -58,7 +62,7 @@ struct songNode *findSongLibrary(struct songNode **library,
     if(library[position] == NULL){
         printf("Song does not exist(No List)\n");
         return NULL;
-    } 
+    }
     struct songNode *cursor = library[position];
     for(; cursor != NULL; cursor = cursor->next){
         // printf("\n%s", cursor->artist);
@@ -126,4 +130,64 @@ void printByArtist(struct songNode **library, char paramArtist[100]) {
         printf("\t%s: %s\n", cursor->artist, cursor->name);
     }
     printf("]\n");
+}
+
+void shuffle(struct songNode **library, int n){
+    int i = 0;
+    int j = 0;
+    int times = 0;
+    int librarySize = 0;
+    int random = 0;
+    struct songNode *song = NULL;
+    printf("Shuffling into a playlist of %d songs \n", n );
+    for (; i < 27; i++) {
+        librarySize += listLength(library[i]);
+    }
+    printf("Library size: %d \n", librarySize);
+    if (librarySize == 0) {
+        printf ("There are no songs to shuffle! \n");
+        return;
+    }
+    for (; times < n; times ++) {
+        i = 0;
+        j = 0;
+        random = rand() % librarySize;
+        for (; i < 27; j+= listLength(library[i]), i++ ) {
+            if (j <= random && random < j + listLength(library[i])) {
+                song = randomSong(library[i]);
+                printf("%s: %s \n", song->artist , song->name);
+            }
+        }
+    }
+}
+
+struct songNode **removeSongLibrary(struct songNode** library,
+                           char paramArtist[100],
+                           char paramName[100]){
+    printf("Removing [%s: %s]\n", paramArtist, paramName);
+
+    int position = (int)(paramArtist[0]) - 96;
+    if (position < 1 || position > 26){
+       position = 0;
+    }
+    if(library[position] == NULL){
+       printf("Song does not exist");
+       return library;
+    }
+    struct songNode *cursor = library[position];
+    library[position] = removeSong(cursor, paramArtist, paramName);
+    return library;
+}
+
+struct songNode **clearLibrary(struct songNode **library) {
+    // struct songNode *songList = ;
+    // struct songNode *cursor;
+    // for
+    int i = 0;
+    for(; i < 27; i++){
+        freeList(library[i]);
+        // free(library[i]);
+    }
+    free(library);
+    return NULL;
 }

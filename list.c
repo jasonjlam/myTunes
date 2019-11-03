@@ -124,6 +124,7 @@ struct songNode * removeSong(struct songNode *songList, char paramArtist[100], c
                 return songList;
             }
         }
+        printf("Song does not exist");
         return songList;
     }
 }
@@ -133,7 +134,7 @@ struct songNode * freeList(struct songNode * songList){
     struct songNode *cursor;
     for(; nextSong != NULL; nextSong = cursor){
         cursor = nextSong->next;
-        // printf("...> Freeing song %s: %s\n", nextSong->artist, nextSong->name);
+        printf("***> Freeing song %s: %s\n", nextSong->artist, nextSong->name);
         free(nextSong);
     }
     return NULL;
